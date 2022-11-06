@@ -1,5 +1,12 @@
+import { ListWrapper } from '@layout';
 import { ReactElement } from 'react';
 
-export default function CharacterList(): ReactElement {
-  return <h1>characters</h1>;
+import CharacterList from '../components/character_list/UI/CharacterList';
+
+export default function CharacterPage(): ReactElement {
+  return (
+    <ListWrapper>
+      <CharacterList characters={[]} />
+    </ListWrapper>
+  );
 }
