@@ -13,8 +13,10 @@ import {
   Typography
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { store } from '@store';
 import { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSnapshot } from 'valtio';
 
 interface IMenuComponent {
   open: boolean;
@@ -33,10 +35,12 @@ export default function MenuComponent({
 }: IMenuComponent): ReactElement {
   const navigate = useNavigate();
   const classes = useStyles();
+  const snap = useSnapshot(store) as typeof store;
 
   const goTo = (item: IMenuOption): void => {
-    onClose();
+    snap.changeCurrentPage(item.title);
     navigate(item.path, {});
+    onClose();
   };
 
   return (

@@ -21,7 +21,8 @@
       "@constants": ["./src/lib/contants/index.ts"],
       "@pages": ["./src/pages/index.ts"],
       "@types": ["./src/lib/types/index.d.ts"],
-      "@components": ["./src/components/common/UI/index.ts"]
+      "@components": ["./src/components/common/UI/index.ts"],
+      "@store": ["./src/store/proxies.ts"]
     }
   },
   "include": ["src"],

@@ -8,7 +8,9 @@ import {
   Typography
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { store } from '@store';
 import { ReactElement, useState } from 'react';
+import { useSnapshot } from 'valtio';
 
 interface IMainLayout {
   children: ReactElement;
@@ -25,7 +27,7 @@ const useStyles = makeStyles({
 
 export default function MainLayout({ children }: IMainLayout): ReactElement {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const { currentPage } = useSnapshot(store);
   const classes = useStyles();
 
   const toggleMenu = (): void => setMenuOpen(!menuOpen);
@@ -47,7 +49,7 @@ export default function MainLayout({ children }: IMainLayout): ReactElement {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Title
+            {currentPage}
           </Typography>
         </Toolbar>
       </AppBar>
