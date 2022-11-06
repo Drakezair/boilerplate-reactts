@@ -21,17 +21,30 @@
     "prettier",
     "jsx-a11y",
     "react-hooks",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "simple-import-sort"
   ],
   "rules": {
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "no-console": "warn",
-    "@typescript-eslint/restrict-template-expressions": "off"
+    "@typescript- eslint/restrict-template-expressions": "off",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn"
   },
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@layout", "src/components/common/layout/index.ts"],
+          ["@constants", ".src/lib/contants/index.ts"],
+          ["@pages", ".src/pages/index.ts"]
+        ],
+        "extensions": [".ts"]
+      }
     }
   }
 }
