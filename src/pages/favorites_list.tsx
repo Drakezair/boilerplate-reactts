@@ -1,5 +1,16 @@
+import { ListWrapper } from '@layout';
 import { ReactElement } from 'react';
 
-export default function FavoritesList(): ReactElement {
-  return <h1>favorites</h1>;
+import FavoritesList from '../components/favorites_list/UI/FavoritesList';
+import SeachInput from '../components/favorites_list/UI/SearchFavorites';
+
+export default function FavoritesPage(): ReactElement {
+  return (
+    <ListWrapper>
+      <>
+        <SeachInput />
+        <FavoritesList />
+      </>
+    </ListWrapper>
+  );
 }

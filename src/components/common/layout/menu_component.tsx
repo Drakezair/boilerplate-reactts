@@ -71,7 +71,7 @@ export default function MenuComponent({
           <List>
             {MenuOptions?.map((item) => (
               <ListItem key={item.title} disablePadding>
-                <ListItemButton onClick={() => goTo(item)}>
+                <ListItemButton id={item.title} onClick={() => goTo(item)}>
                   <ListItemText>
                     <Typography
                       variant="h6"

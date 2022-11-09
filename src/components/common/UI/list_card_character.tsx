@@ -4,9 +4,7 @@ import { makeStyles } from '@mui/styles';
 import { Character } from '@types';
 import { FunctionComponent } from 'react';
 
-interface CharacteCardProps extends Character {
-  favorite: boolean;
-}
+import useCharacter from '../../../hooks/useCharacters';
 
 const useStyles = makeStyles({
   container: {
@@ -30,18 +28,21 @@ const useStyles = makeStyles({
     color: 'white !important'
   },
   button: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    background: 'none',
+    border: 'none',
+    color: 'white'
   }
 });
 
-const CharacteCard: FunctionComponent<CharacteCardProps> = ({
+const CharacteCard: FunctionComponent<Character> = ({
   birthYear,
   gender,
   name,
-  planet,
-  favorite
+  planet
 }) => {
   const classes = useStyles();
+  const { validateFav, addFavorite, removeFavorite } = useCharacter();
   return (
     <div className={classes.container}>
       <div>
@@ -54,9 +55,20 @@ const CharacteCard: FunctionComponent<CharacteCardProps> = ({
         <Chip className={classes.chip} icon={<LocationOn />} label={planet} />
       </div>
       <div>
-        <span className={classes.button}>
-          {favorite ? <Favorite /> : <FavoriteBorder />}
-        </span>
+        <button
+          onClick={() =>
+            !validateFav(name)
+              ? addFavorite({ name, gender, birthYear, planet })
+              : removeFavorite({ name, gender, birthYear, planet })
+          }
+          className={classes.button}
+        >
+          {validateFav(name) ? (
+            <Favorite id="fav" />
+          ) : (
+            <FavoriteBorder id="unfav" />
+          )}
+        </button>
       </div>
     </div>
   );

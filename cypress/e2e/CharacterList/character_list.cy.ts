@@ -11,6 +11,8 @@ describe('character list', () => {
     });
 
     cy.get('#Luke').should('exist');
+    cy.get('#unfav').click();
+    cy.get('#fav').should('exist');
   });
 
   it('fail', () => {

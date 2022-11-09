@@ -1,11 +1,22 @@
+import { store } from '@store';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { Character, CharacterFromApi, PlanetFromApi } from '@types';
+import { useSnapshot } from 'valtio';
 
 interface IuseCharacter {
   characters: UseQueryResult<Character[], unknown>;
+  favorites: Character[];
+  favoritesSearch: Character[] | [];
+  search: (search: string) => void;
+  addFavorite: (character: Character) => void;
+  removeFavorite: (character: Character) => void;
+  validateFav: (name: string) => boolean;
 }
 
 export default function useCharacter(): IuseCharacter {
+  const { addFavorite, favorites, removeFavorite, search, favoritesSearch } =
+    useSnapshot(store) as typeof store;
+
   const getCharacters = async (): Promise<Character[]> => {
     const characters = await fetch('https://swapi.dev/api/people');
     const charactersJson: CharacterFromApi = await characters.json();
@@ -26,5 +37,18 @@ export default function useCharacter(): IuseCharacter {
 
   const characters = useQuery<Character[]>(['characters'], getCharacters);
 
-  return { characters };
+  const validateFav = (name: string): boolean => {
+    const exist = favorites.find((item) => name === item.name);
+    return exist !== undefined;
+  };
+
+  return {
+    characters,
+    addFavorite,
+    removeFavorite,
+    favorites,
+    validateFav,
+    search,
+    favoritesSearch
+  };
 }
