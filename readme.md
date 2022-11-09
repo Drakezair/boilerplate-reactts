@@ -1,4 +1,4 @@
-# Bank app
+# People List
 
 This project was bootstrapped with [Vite](https://vitejs.dev/).
 is a simple boilerplate of react with typescript and basic Restfull api integrations
