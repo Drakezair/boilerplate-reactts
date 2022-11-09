@@ -45,7 +45,9 @@ const CharacteCard: FunctionComponent<CharacteCardProps> = ({
   return (
     <div className={classes.container}>
       <div>
-        <p className={classes.title}>{name}</p>
+        <p id={name} className={classes.title}>
+          {name}
+        </p>
         <p className={classes.subLine}>
           {gender} | {birthYear}
         </p>

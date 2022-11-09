@@ -3,27 +3,22 @@ import { List } from '@mui/material';
 import { Character } from '@types';
 import { FunctionComponent } from 'react';
 
+import useCharacter from '../../../hooks/useCharacters';
+
 interface CharacterListProps {
   characters: Character[];
 }
 
 const CharacterList: FunctionComponent<CharacterListProps> = () => {
+  const {
+    characters: { data }
+  } = useCharacter();
+
   return (
     <List>
-      <CharacterCard
-        name="fae"
-        birthYear="awda"
-        gender="awdadw"
-        planet="awdawd"
-        favorite={false}
-      />
-      <CharacterCard
-        name="fae"
-        birthYear="awda"
-        gender="awdadw"
-        planet="awdawd"
-        favorite={true}
-      />
+      {data?.map((item) => (
+        <CharacterCard key={item.name} {...item} favorite={false} />
+      ))}
     </List>
   );
 };

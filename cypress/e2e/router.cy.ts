@@ -10,7 +10,7 @@ describe('Router', () => {
     cy.visit('http://127.0.0.1:5173/');
   });
 
-  it('not found', () => {
+  it('favorites', () => {
     cy.visit('http://127.0.0.1:5173/favorites');
     cy.get('h1').should('have.text', 'favorites');
   });
